@@ -13,14 +13,16 @@ class User(UserMixin):
 
     @staticmethod
     def get_by_id(user_id):
-        row = db_execute("SELECT * FROM users WHERE id = %s", (user_id,))[0]
+        rows = db_execute("SELECT * FROM users WHERE id = %s", (user_id,))
+        row = rows[0]
         if row:
             return User(row["id"], row["username"], row["password"])
         return None
 
     @staticmethod
     def get_by_username(username):
-        row = db_execute("SELECT * FROM users WHERE username = %s", (username,))[0]
+        rows = db_execute("SELECT * FROM users WHERE username = %s", (username,))
+        row = rows[0]
         if row:
             return User(row["id"], row["username"], row["password"])
         return None
