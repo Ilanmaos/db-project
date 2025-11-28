@@ -132,3 +132,7 @@ def complete():
 
 if __name__ == "__main__":
     app.run()
+
+@app.get("/bücher")
+def bücher():
+    return "Alle Bücher";
