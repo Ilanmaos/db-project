@@ -4,10 +4,7 @@ CREATE TABLE users (
     password VARCHAR(250) NOT NULL
 );
 
-CREATE TABLE todos (
+CREATE TABLE bücher (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    content VARCHAR(100),
-    due DATETIME,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    bücher_id INT NOT NULL,
 );
