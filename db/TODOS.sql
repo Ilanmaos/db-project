@@ -6,5 +6,5 @@ CREATE TABLE users (
 
 CREATE TABLE bücher (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    bücher_id INT NOT NULL,
+    bücher_id INT NOT NULL
 );
