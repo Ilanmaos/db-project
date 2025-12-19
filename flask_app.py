@@ -137,4 +137,4 @@ if __name__ == "__main__":
 @login_required
 def bücher():
     dbbücher=db_read("SELECT id, titel, autor, FROM bücher")
-    return render_template("bücher.html", title="Bücher", bücher=dbbücher );
+    return render_template("bücher.html", title="Bücher", bücher=dbbücher )
