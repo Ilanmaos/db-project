@@ -136,5 +136,5 @@ if __name__ == "__main__":
 @app.get("/bücher")
 @login_required
 def bücher():
-    bücher=db_read("SELECT id, content, FROM bücher")
-    return "Alle Bücher";
+    dbbücher=db_read("SELECT id, titel, autor, FROM bücher")
+    return render_template("bücher.html", title="Bücher", bücher=dbbücher );

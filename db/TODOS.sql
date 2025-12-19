@@ -1,10 +1,14 @@
+/*
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(250) NOT NULL UNIQUE,
     password VARCHAR(250) NOT NULL
 );
+*/
 
 CREATE TABLE bücher (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    bücher_id INT NOT NULL
+    buchtitel VARCHAR(100) NOT NULL,
+    autor VARCHAR(100) NOT NULL,
+    verlag VARCHAR(100) NOT NULL
 );
