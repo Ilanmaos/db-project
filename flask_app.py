@@ -112,16 +112,26 @@ def logout():
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
-    # GET
-    if request.method == "GET":
-        todos = db_read("SELECT id, content, due FROM todos WHERE user_id=%s ORDER BY due", (current_user.id,))
-        return render_template("main_page.html", todos=todos)
+    dbbucher=db_read("SELECT * FROM bucher")
+    return render_template("bucher.html", title="Bücher", bucher=dbbucher )
 
-    # POST
-    content = request.form["contents"]
-    due = request.form["due_at"]
-    db_write("INSERT INTO todos (user_id, content, due) VALUES (%s, %s, %s)", (current_user.id, content, due, ))
-    return redirect(url_for("index"))
+
+
+@app.route('/add_book', methods=['POST'])
+def add_book():
+    # Daten aus dem Formular holen
+    titel = request.form['buchtitel']
+    autor = request.form['autor']
+    verlag = request.form['verlag']
+    sprache = request.form['sprache']
+    preis = request.form['originalpreis']
+
+    # SQL Befehl zum Einfügen
+    sql = "INSERT INTO bucher (buchtitel, autor, verlag, sprache, originalpreis) VALUES (%s, %s, %s, %s, %s)"
+    db_write(sql, (titel, autor, verlag, sprache, preis))
+
+    return redirect('/') # Zurück zur Startseite
+
 
 @app.post("/complete")
 @login_required
@@ -133,8 +143,3 @@ def complete():
 if __name__ == "__main__":
     app.run()
 
-@app.get("/bücher")
-@login_required
-def bücher():
-    dbbücher=db_read("SELECT id, titel, autor, FROM bücher")
-    return render_template("bücher.html", title="Bücher", bücher=dbbücher )
