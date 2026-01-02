@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div class="container">
+    <h2>Neues Buch erfassen</h2>
+    <div class="form-box">
+        <form action="/add_book" method="POST">
+            <input type="text" name="buchtitel" placeholder="Buchtitel" required>
+            <input type="text" name="autor" placeholder="Autor" required>
+            <input type="text" name="verlag" placeholder="Verlag" required>
+            <input type="text" name="sprache" placeholder="Sprache">
+            <input type="number" step="0.01" name="originalpreis" placeholder="Originalpreis">
+            <button type="submit">Buch speichern</button>
+        </form>
+    </div>
+
+    <h2>Alle verfügbaren Bücher</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Buchtitel</th>
+                <th>Autor</th>
+                <th>Verlag</th>
+                <th>Sprache</th>
+                <th>Preis</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for buch in bucher %}
+            <tr>
+                <td>{{ buch.id }}</td>
+                <td>{{ buch.buchtitel }}</td>
+                <td>{{ buch.autor }}</td>
+                <td>{{ buch.verlag }}</td>
+                <td>{{ buch.sprache }}</td>
+                <td>{{ buch.originalpreis }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
