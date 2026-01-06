@@ -125,13 +125,13 @@ def add_book():
     verlag = request.form['verlag']
     sprache = request.form['sprache']
     preis = request.form['originalpreis']
+    verkaufer = request.form['verkaufer']
 
     # SQL Befehl zum Einfügen
-    sql = "INSERT INTO bucher (buchtitel, autor, verlag, sprache, originalpreis) VALUES (%s, %s, %s, %s, %s)"
-    db_write(sql, (titel, autor, verlag, sprache, preis))
+    sql = "INSERT INTO bucher (buchtitel, autor, verlag, sprache, originalpreis, verkaufer) VALUES (%s, %s, %s, %s, %s, %s)"
+    db_write(sql, (titel, autor, verlag, sprache, preis, verkaufer))
 
     return redirect('/') # Zurück zur Startseite
-
 
 @app.post("/complete")
 @login_required
