@@ -78,7 +78,7 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     error = None
-
+penis
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
