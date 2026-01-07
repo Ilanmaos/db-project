@@ -134,7 +134,7 @@ def add_book():
 
 @app.route('/delete', methods=["GET", "POST"])
 def delete():
-    id =  request.args.get('id')
+    id =  request.args.get('book_id')
     sql = "DELETE FROM bucher WHERE id=%s"
     db_write(sql, (id,))
 
