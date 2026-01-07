@@ -119,7 +119,6 @@ def index():
 
 @app.route('/add_book', methods=['POST'])
 def add_book():
-    # Daten aus dem Formular holen
     titel = request.form['buchtitel']
     autor = request.form['autor']
     verlag = request.form['verlag']
