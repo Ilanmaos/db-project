@@ -134,11 +134,11 @@ def add_book():
 
 @app.route('/delete', methods=["GET", "POST"])
 def delete():
-    sql = "DELETE FROM bucher WHERE id = %d"
+    sql = "DELETE FROM bucher WHERE id = %s"
     db_read(sql, (request.args.get('id')))
 
     return redirect('/')
-    
+
 @app.post("/complete")
 @login_required
 def complete():
