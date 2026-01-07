@@ -126,6 +126,7 @@ def add_book():
     preis = request.form['originalpreis']
     verkaufer = request.form['verkaufer']
 
+    # SQL Befehl zum Einfügen
     sql = "INSERT INTO bucher (buchtitel, autor, verlag, sprache, originalpreis, verkaufer) VALUES (%s, %s, %s, %s, %s, %s)"
     db_write(sql, (titel, autor, verlag, sprache, preis, verkaufer))
 
