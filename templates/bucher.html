@@ -4,7 +4,7 @@
 <h1>{{ title }}</h1>
 
 <div class="container">
-    <h2>Neues Buch machen</h2>
+    <h2>Neues Buch erfassen</h2>
     <div class="form-box">
         <form action="/add_book" method="POST">
             <input type="text" name="buchtitel" placeholder="Buchtitel" required>
@@ -12,6 +12,7 @@
             <input type="text" name="verlag" placeholder="Verlag" required>
             <input type="text" name="sprache" placeholder="Sprache">
             <input type="number" step="0.01" name="originalpreis" placeholder="Originalpreis">
+            <input type="text" name="verkaufer" placeholder="Verkäufer" required>
             <button type="submit">Buch speichern</button>
         </form>
     </div>
@@ -26,6 +27,7 @@
                 <th>Verlag</th>
                 <th>Sprache</th>
                 <th>Preis</th>
+                <th>Verkäufer</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +39,7 @@
                 <td>{{ buch.verlag }}</td>
                 <td>{{ buch.sprache }}</td>
                 <td>{{ buch.originalpreis }}</td>
+                <td>{{ buch.verkaufer }}</td>
             </tr>
             {% endfor %}
         </tbody>
