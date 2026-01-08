@@ -113,8 +113,8 @@ def logout():
 @login_required
 def index():
     dbbucher=db_read("SELECT * FROM bucher")
-    return render_template("bucher.html", title="Bücher", bucher=dbbucher )
-
+    return render_template("bucher.html", bucher=dbbucher )
+    # gibt an bucher.html alle infos gespeicher unter bucher, bucher.html kann dann bucher verwenden.
 
 
 @app.route('/add_book', methods=['POST'])
@@ -124,19 +124,18 @@ def add_book():
     verlag = request.form['verlag']
     sprache = request.form['sprache']
     preis = request.form['originalpreis']
-    verkaufer = request.form['verkaufer']
+    # holt sich den wert aus "form" (liste) und speichert ihn in jeweiliger variable
+    
+    sql = "INSERT INTO bucher (buchtitel, autor, verlag, sprache, originalpreis) VALUES (%s, %s, %s, %s, %s)"
+    db_write(sql, (titel, autor, verlag, sprache, preis)) # führt dbwrite mit sql string und werten in klammenr aus
 
-    # SQL Befehl zum Einfügen
-    sql = "INSERT INTO bucher (buchtitel, autor, verlag, sprache, originalpreis, verkaufer) VALUES (%s, %s, %s, %s, %s, %s)"
-    db_write(sql, (titel, autor, verlag, sprache, preis, verkaufer))
-
-    return redirect('/') # Zurück zur Startseite
+    return redirect('/') # zurück zur startseite
 
 @app.route('/delete', methods=["GET", "POST"])
 def delete():
-    id =  request.args.get('book_id')
+    id =  request.args.get('book_id') 
     sql = "DELETE FROM bucher WHERE id=%s"
-    db_write(sql, (id,))
+    db_write(sql, (id,)) # , damit id nicht nur als string gelesen wird sondern als tupple (wie list)
 
     return redirect('/')
 
