@@ -73,6 +73,7 @@
                 <td>{{ "%.2f"|format(angebot.originalpreis) }}</td>
                 <td>{{ angebot.username }}</td>
                 <td>{{ angebot.qualitat }}</td>
+            <td><a href="/accept?book_id={{angebot.buch_id}}&user_id={{angebot.user_id}}">Akzeptieren</a></td>
             </tr>
             {% else %}
             <tr>

@@ -114,7 +114,7 @@ def logout():
 def index():
     dbbucher=db_read("SELECT * FROM bucher")
     angebote_query = """
-        SELECT bucher.buchtitel, bucher.originalpreis, users.username, angebot.qualitat
+        SELECT angebot.buch_id, angebot.user_id, bucher.buchtitel, angebot.verkauft, bucher.originalpreis, users.username, angebot.qualitat
         FROM angebot
         JOIN bucher ON angebot.buch_id = bucher.id
         JOIN users ON angebot.user_id = users.id
@@ -145,6 +145,21 @@ def delete():
     db_write(sql, (id,)) # , damit id nicht nur als string gelesen wird sondern als tupple (wie list)
 
     return redirect('/')
+
+@app.route('/accept', methods=["GET", "POST"])
+@login_required
+def accept():
+    
+    user_id = request.form['user_id']
+    buch_id = request.form['buch_id']
+    query="""
+        UPDATE angebot 
+        SET verkauft = TRUE 
+        WHERE user_id = %s AND buch_id = %s"""
+    db_write(query, (user_id, buch_id))
+
+    return redirect('/')
+
 
 @app.get("/search")
 @login_required
