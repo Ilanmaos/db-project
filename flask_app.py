@@ -139,6 +139,29 @@ def delete():
 
     return redirect('/')
 
+@app.get("/search")
+@login_required
+def search():
+    query = request.args.get('suche', '').strip() # strip entfernt alle unnötigen leerzeichen etc
+
+    if query:
+        # Suche über Buchtitel/Autor
+        sql = "SELECT * FROM bucher WHERE buchtitel LIKE %s OR autor LIKE %s"
+        search_param = f"%{query}%"
+        
+        # speichert suche in results
+        results = db_read(sql, (search_param, search_param))
+    else:
+        # falls suchfeld leer ist
+        return redirect(url_for("index"))
+
+    # zeigt nur gesuchte bücher an
+    return render_template(
+        "bucher.html", 
+        bucher=results, 
+        current_search=query
+    )
+
 @app.post("/complete")
 @login_required
 def complete():
