@@ -162,6 +162,16 @@ def search():
         current_search=query
     )
 
+@app.get("/add_angebot")
+@login_required
+def add_angebot():
+    book_id = request.form['book_id']
+    sql= "insert into bucher (user_id, buch_id, verkauft) VALUES (%s, %s, false)"
+    db_write(sql, (current_user.id, book_id)) # führt dbwrite mit sql string und werten in klammenr aus
+
+    return redirect('/') # zurück zur startseite
+
+
 @app.post("/complete")
 @login_required
 def complete():
