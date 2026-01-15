@@ -45,6 +45,9 @@
                 <td>{{ buch.originalpreis }}</td>
                 <td>
                     <a href="/delete?book_id={{buch.id}}">Löschen</a>
+                    <form action="/add_angebot" method="POST">
+                        <input type="number" name="verkaufpreis" placeholder="Verkaufpreis" required>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
