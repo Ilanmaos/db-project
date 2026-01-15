@@ -162,7 +162,7 @@ def search():
         current_search=query
     )
 
-@app.get("/add_angebot")
+@app.get("/add_angebot", methods=["GET", "POST"])
 @login_required
 def add_angebot():
     book_id = request.form['book_id']
