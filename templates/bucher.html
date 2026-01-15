@@ -56,4 +56,31 @@
     </table>
 </div>
 
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Buchtitel</th>
+                <th>Preis (€)</th>
+                <th>Verkäufer</th>
+                <th>Zustand</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for angebot in angebote %}
+            <tr>
+                <td>{{ angebot.buchtitel }}</td>
+                <td>{{ "%.2f"|format(angebot.originalpreis) }}</td>
+                <td>{{ angebot.username }}</td>
+                <td>{{ angebot.qualitat }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">Momentan sind keine Angebote verfügbar.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}

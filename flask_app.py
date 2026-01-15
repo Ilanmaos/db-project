@@ -113,7 +113,14 @@ def logout():
 @login_required
 def index():
     dbbucher=db_read("SELECT * FROM bucher")
-    return render_template("bucher.html", bucher=dbbucher )
+    angebote_query = """
+        SELECT bucher.buchtitel, bucher.originalpreis, users.username, angebot.qualitat
+        FROM angebot
+        JOIN bucher ON angebot.buch_id = bucher.id
+        JOIN users ON angebot.user_id = users.id
+    """
+    angebote = db_read(angebote_query)
+    return render_template("bucher.html", bucher=dbbucher, angebote=angebote)
     # gibt an bucher.html alle infos gespeicher unter bucher, bucher.html kann dann bucher verwenden.
 
 
