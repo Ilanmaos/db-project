@@ -188,7 +188,7 @@ def search():
 @login_required
 def add_angebot():
     book_id = request.form['book_id']
-    sql= "insert into bucher (user_id, buch_id, verkauft) VALUES (%s, %s, false)"
+    sql= "insert into angebot (user_id, buch_id, verkauft) VALUES (%s, %s, false)"
     db_write(sql, (current_user.id, book_id)) # führt dbwrite mit sql string und werten in klammenr aus
 
     return redirect('/') # zurück zur startseite
